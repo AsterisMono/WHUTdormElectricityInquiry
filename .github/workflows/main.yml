@@ -37,5 +37,8 @@ jobs:
         env:
           apptoken: ${{ secrets.apptoken }}
           uid: ${{ secrets.uid }}
+          web_username: ${{ secrets.web_username }}
+          web_password: ${{ secrets.password }}
+          dormdata: ${{ secrets.dormdata }}
         run: python main.py
       
