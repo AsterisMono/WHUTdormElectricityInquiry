@@ -33,7 +33,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           sudo apt-get install tesseract-ocr
-          cp num.traineddata /usr/share/tesseract-ocr/4.00/tessdata/num.traineddata
+          sudo cp num.traineddata /usr/share/tesseract-ocr/4.00/tessdata/num.traineddata
           
       - name: 'Run Script // TODO'
         env:
