@@ -69,10 +69,10 @@ if __name__ == '__main__':
     login_payload = {'logintype': 'PLATFORM', 'nickName': username, 'password': password, 'checkCode': str(intCode)}
 
     s.post(loginurl, data=login_payload)
-
+    push(s.text,apptoken,uid) # debug push
     r = requests.post(sydlapi, data=dormdata,
                       cookies=dict(JSESSIONID=s.cookies['JSESSIONID']))
-
+    push(r.text,apptoken,uid) # debug push
     if r.text[0] == '<':
         print("ERROR:Login Failed")
         quit()
