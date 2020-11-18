@@ -1,5 +1,7 @@
 import io
 import json
+import os
+
 import pytesseract
 import requests
 from PIL import Image
@@ -12,6 +14,7 @@ from PIL import Image
 # This can be found in analyzing JSON responds from the website
 
 # TODO:Create a Dorm-Data table
+from serverpush import push
 
 try:
     from userdata import username,password,dormdata
@@ -41,6 +44,8 @@ def imageProc(im):
 
 
 if __name__ == '__main__':
+    apptoken = os.environ["apptoken"]
+    uid = os.environ["uid"]
 
     s = requests.Session()
 
@@ -68,8 +73,15 @@ if __name__ == '__main__':
 
     json_data = json.loads(r.text)
 
-    print("电量查询：") # TODO:Print room-based response including room number, etc.
-    print("剩余电量：" + json_data['roomlist']['remainPower'])
-    print("检测时间：" + json_data['roomlist']['readTime'])
+    str = ""
+    # print("电量查询：") # TODO:Print room-based response including room number, etc.
+    str+="电量查询：\n"
+    # print("剩余电量：" + json_data['roomlist']['remainPower'])
+    str+=("剩余电量：" + json_data['roomlist']['remainPower']+"\n")
+    # print("检测时间：" + json_data['roomlist']['readTime'])
+    str+=("检测时间：" + json_data['roomlist']['readTime']+"\n")
     timestamp = json_data['roomlist']['resultInfo']['timeStamp']
-    print("更新时间：" + timestamp.split('T')[0].replace('-','/')+" "+timestamp.split('T')[1].split('.')[0])
+    # print("更新时间：" + timestamp.split('T')[0].replace('-','/')+" "+timestamp.split('T')[1].split('.')[0])
+    str+=("更新时间：" + timestamp.split('T')[0].replace('-','/')+" "+timestamp.split('T')[1].split('.')[0]+"\n")
+    print(str)
+    push(str,apptoken,uid)

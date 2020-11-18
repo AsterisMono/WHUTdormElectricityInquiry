@@ -34,5 +34,8 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           
       - name: 'Run Script // TODO'
-        run: echo HelloWorld
+        env:
+          apptoken: ${{ secrets.apptoken }}
+          uid: ${{ secrets.uid }}
+        run: python main.py
       
