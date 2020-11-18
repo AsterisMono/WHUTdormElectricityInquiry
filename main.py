@@ -78,7 +78,7 @@ if __name__ == '__main__':
         quit()
 
     json_data = json.loads(r.text)
-
+    print(json_data)
     str = ""
     # print("电量查询：") # TODO:Print room-based response including room number, etc.
     str+="电量查询：\n"
