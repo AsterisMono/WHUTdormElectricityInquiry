@@ -16,11 +16,13 @@ from PIL import Image
 # TODO:Create a Dorm-Data table
 from serverpush import push
 
+'''
 try:
     from userdata import username,password,dormdata
 except ImportError:
     print("请检查根目录下是否有userdata.py用户信息文件！")
     quit(-1)
+'''
 
 # Const urls
 loginurl = "http://cwsf.whut.edu.cn/innerUserLogin"
@@ -46,6 +48,10 @@ def imageProc(im):
 if __name__ == '__main__':
     apptoken = os.environ["apptoken"]
     uid = os.environ["uid"]
+    username = os.environ["web_username"]
+    password = os.environ["web_password"]
+    dormdata = os.environ["dormdata"]
+
 
     s = requests.Session()
 
